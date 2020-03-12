@@ -11,8 +11,8 @@ class Point:
 class Ship:
 	def __init__(self, size, points):
 		self.size = x
-		self.damaged = 0
-		self.points = points		
+		self.damage = 0
+		# self.points = points		
 	def isDestroyd(self):
 		if (self.damaged == self.size):
 			return True
@@ -25,7 +25,14 @@ class FieldPoint(Point):
 		self.touched = False
 		self.ship = ship
 	def getSymbol(self):
-		print('test')
+		if (not self.touched):
+			return TILE_FOG_OF_WAR
+		elif (self.ship == None):
+			return TILE_SEA
+	def touch(self):
+		self.touched = True
+		if (self.ship != None):
+			self.ship.damage += 1
 point = FieldPoint(0,0, 'ship')
 print(point.x)
 print(point.y)

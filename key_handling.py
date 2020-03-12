@@ -1,21 +1,28 @@
 from getkey import getkey, keys
 from utils import *
 from field_point import *
-cur_point = Point(0,0)
+pointer = Point(0,0)
+N = 10
+
+field = [[0] * N for i in range(N)]
+for i in range(0,10):
+	for j in range(0,10):
+		field[i][j] = FieldPoint(i,j,None)
+
 def draw_field():
 	print('  ',end='')
-	for c in char_range('А', 'Й'):
+	for c in char_range('А', chr(ord('А') + N - 1)):
 		print('', c,end=' ')
 	print('')
-	for i in range(0,10):
+	for i in range(0,N):
 		print(i, end=' ')
-		for j in range(0,10):
-			if (i == cur_point.y and j == cur_point.x):
-				print('[~]', end='')
+		for j in range(0,N):
+			if (i == pointer.y and j == pointer.x):
+				print('[',field[i][j].getSymbol(),']',sep='', end='')
 			else:
-				print('',TILE_FOG_OF_WAR, end=' ')
+				print('',field[i][j].getSymbol(), end=' ')
 		print('')
-	print('Current position:', cur_point)
+	print('Current position:', pointer)
 
 while True:
 	clear_screen()
@@ -27,15 +34,17 @@ while True:
 	elif key == keys.ENTER:
 		print('ENTER') 
 	elif key == keys.UP:
-		cur_point.y-=1
+		pointer.y-=1
 	elif key == keys.DOWN:
-		cur_point.y+=1
+		pointer.y+=1
 	elif key == keys.LEFT:
-		cur_point.x-=1
+		pointer.x-=1
 	elif key == keys.RIGHT:
-		cur_point.x+=1
+		pointer.x+=1
+	elif key == keys.SPACE:
+		field[pointer.y][pointer.x].touch()
 	# elif key == keys.CTRL_A:
-	# 	print(cur_point) 
+	# 	print(pointer) 
 	elif key == 'c':
 		clear_screen()
 	else:
