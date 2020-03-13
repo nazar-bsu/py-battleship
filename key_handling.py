@@ -3,30 +3,38 @@ from utils import *
 from field_point import *
 pointer = Point(0,0)
 N = 10
-
+log=''
 field = [[0] * N for i in range(N)]
 for i in range(0,10):
 	for j in range(0,10):
-		field[i][j] = FieldPoint(i,j,None)
+		ship = None
+		if( i%2 == 1 and j%2 == 1):
+			ship = Ship(1)
+		field[i][j] = FieldPoint(i,j,ship)
+		# field[i][j].touched = True
 
 def draw_field():
-	print('  ',end='')
+	print('  ',end='', flush = False)
 	for c in char_range('А', chr(ord('А') + N - 1)):
-		print('', c,end=' ')
-	print('')
+		print('', c,end=' ', flush = False)
+	print('', flush = False)
 	for i in range(0,N):
-		print(i, end=' ')
+		print(i, end=' ', flush = False)
 		for j in range(0,N):
-			if (i == pointer.y and j == pointer.x):
-				print('[',field[i][j].getSymbol(),']',sep='', end='')
+			if (i == pointer.i and j == pointer.j):
+				print('[',field[i][j].getSymbol(),']',sep='', end='', flush = False)
 			else:
-				print('',field[i][j].getSymbol(), end=' ')
+				print('',field[i][j].getSymbol(), end=' ', flush = False)
 		print('')
-	print('Current position:', pointer)
-
+	print('Current position:', pointer, flush = False)
+	print('Log:', log, flush = True)
+need_redraw=True
 while True:
-	clear_screen()
-	draw_field()
+	if(need_redraw):
+		clear_screen()
+		draw_field()
+	else:
+		need_redraw=True
 	key = getkey()
 	if key == keys.ESC:
 		print('Thanks for the game!')
@@ -34,17 +42,28 @@ while True:
 	elif key == keys.ENTER:
 		print('ENTER') 
 	elif key == keys.UP:
-		pointer.y-=1
+		if (pointer.i != 0):
+			pointer.i-=1
+		else:
+			need_redraw=False
 	elif key == keys.DOWN:
-		pointer.y+=1
+		if (pointer.i != N -1):
+			pointer.i+=1
+		else:
+			need_redraw=False
 	elif key == keys.LEFT:
-		pointer.x-=1
+		if (pointer.j != 0):
+			pointer.j-=1
+		else:
+			need_redraw=False
 	elif key == keys.RIGHT:
-		pointer.x+=1
+		if (pointer.j != N -1):
+			pointer.j+=1
+		else:
+			need_redraw=False
 	elif key == keys.SPACE:
-		field[pointer.y][pointer.x].touch()
-	# elif key == keys.CTRL_A:
-	# 	print(pointer) 
+		field[pointer.i][pointer.j].touch()
+		log = 'Touched point ' + str(pointer)
 	elif key == 'c':
 		clear_screen()
 	else:
