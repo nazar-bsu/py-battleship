@@ -1,2 +1,2 @@
 # py-battleship
-Console battleship for university project
+Console battleship game for university project
