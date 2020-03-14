@@ -7,7 +7,7 @@ def clear_screen():
 	# Clear command as function of OS
 	command = "cls" if system().lower()=="windows" else "clear"
 	# Action
-	return call(command) == 0
+	return call(command, shell=True) == 0
 
 def char_range(c1, c2):
 	"""Generates the characters from `c1` to `c2`, inclusive."""
