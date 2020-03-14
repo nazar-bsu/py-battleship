@@ -4,10 +4,12 @@
 # Thanks to Danny Yoo
 
 from __future__ import absolute_import, print_function
-from contextlib import contextmanager
+
 import codecs
 import os
 import sys
+from contextlib import contextmanager
+
 from .keynames import PLATFORM_KEYS
 
 
@@ -29,9 +31,9 @@ class Platform(object):
             for name, action in interrupts.items()
         }
 
-        assert(
-            self.__class__.getchar != Platform.getchar or
-            self.__class__.getchars != Platform.getchars
+        assert (
+                self.__class__.getchar != Platform.getchar or
+                self.__class__.getchars != Platform.getchars
         )
 
     def getkey(self, blocking=True):
@@ -45,7 +47,7 @@ class Platform(object):
         if keycode in self.interrupts:
             interrupt = self.interrupts[keycode]
             if isinstance(interrupt, BaseException) or \
-                issubclass(interrupt, BaseException):
+                    issubclass(interrupt, BaseException):
                 raise interrupt
             else:
                 raise NotImplementedError('Unimplemented interrupt: {!r}'
@@ -140,6 +142,7 @@ class OSReadWrapper(object):
     python's stdin has the fileno & encoding attached to it, so we can
     just use that.
     """
+
     def __init__(self, stream, encoding=None):
         """Construct os.read wrapper.
 
@@ -176,7 +179,7 @@ class PlatformWindows(Platform):
             import msvcrt
         self.msvcrt = msvcrt
 
-    if sys.version_info < (3,0):
+    if sys.version_info < (3, 0):
         def getchars(self, blocking=True):
             """Get characters on Windows."""
 
@@ -192,6 +195,7 @@ class PlatformWindows(Platform):
                 yield chr(self.msvcrt.getch()[0])
             while self.msvcrt.kbhit():
                 yield chr(self.msvcrt.getch()[0])
+
 
 class PlatformTest(Platform):
     KEYS = 'unix'
@@ -243,5 +247,3 @@ def platform(name=None, keys=None, interrupts=None):
             return ctor(keys=keys, interrupts=interrupts)
     else:
         raise NotImplementedError('Unknown platform {!r}'.format(name))
-
-

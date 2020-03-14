@@ -2,49 +2,49 @@
 # What chars to print (if any)
 # Keycode(s) generating event
 import string
-from .unikeys import UnicodeAsciiKeys
 
+from .unikeys import UnicodeAsciiKeys
 
 # These are used for the names of ctrl keys, etc.
 ASCII_NAMES = {
     '\t': 'tab',
 
-    ' ': 'space',          # 0x20
-    '!': 'exclamation',    # 0x21
-    '"': 'double quote',   # 0x22
-    '#': 'hash',           # 0x23
-    '$': 'dollar',         # 0x24
-    '%': 'percent',        # 0x25
-    '&': 'ampersand',      # 0x26
+    ' ': 'space',  # 0x20
+    '!': 'exclamation',  # 0x21
+    '"': 'double quote',  # 0x22
+    '#': 'hash',  # 0x23
+    '$': 'dollar',  # 0x24
+    '%': 'percent',  # 0x25
+    '&': 'ampersand',  # 0x26
     '\'': 'single quote',  # 0x27
-    '(': 'open paren',     # 0x28
-    ')': 'close paren',    # 0x29
-    '*': 'asterisk',       # 0x2a
-    '+': 'plus',           # 0x2b
-    ',': 'comma',          # 0x2c
-    '-': 'minus',          # 0x2d
-    '.': 'period',         # 0x2e
-    '/': 'slash',          # 0x2f
+    '(': 'open paren',  # 0x28
+    ')': 'close paren',  # 0x29
+    '*': 'asterisk',  # 0x2a
+    '+': 'plus',  # 0x2b
+    ',': 'comma',  # 0x2c
+    '-': 'minus',  # 0x2d
+    '.': 'period',  # 0x2e
+    '/': 'slash',  # 0x2f
 
-    ':': 'colon',          # 0x3a
-    ';': 'semicolon',      # 0x3b
-    '<': 'less than',      # 0x3c
-    '=': 'equals',         # 0x3d
-    '>': 'greater than',   # 0x3e
-    '?': 'question',       # 0x3f
-    '@': 'at',             # 0x40
+    ':': 'colon',  # 0x3a
+    ';': 'semicolon',  # 0x3b
+    '<': 'less than',  # 0x3c
+    '=': 'equals',  # 0x3d
+    '>': 'greater than',  # 0x3e
+    '?': 'question',  # 0x3f
+    '@': 'at',  # 0x40
 
-    '[': 'left bracket',   # 0x5b
-    '\\': 'backslash',     # 0x5c
+    '[': 'left bracket',  # 0x5b
+    '\\': 'backslash',  # 0x5c
     ']': 'right bracket',  # 0x5d
-    '^': 'caret',          # 0x5e
-    '_': 'underscore',     # 0x5f
-    '`': 'backtick',       # 0x60
+    '^': 'caret',  # 0x5e
+    '_': 'underscore',  # 0x5f
+    '`': 'backtick',  # 0x60
 
-    '{': 'left brace',     # 0x7b
-    '|': 'pipe',           # 0x7c
-    '}': 'right brace',    # 0x7d
-    '~': 'tilde',          # 0x7e
+    '{': 'left brace',  # 0x7b
+    '|': 'pipe',  # 0x7c
+    '}': 'right brace',  # 0x7d
+    '~': 'tilde',  # 0x7e
 }
 
 
@@ -226,7 +226,7 @@ class WindowsKeys(object):
     RIGHT = '\xe0M'
     UP = '\xe0H'
     DOWN = '\xe0P'
-    
+
     ENTER = '\r'
     BACKSPACE = '\x08'
     SPACE = ' '
@@ -473,7 +473,6 @@ windows_keys = Keys([
     JargonKeys(),
     IntercalKeys()
 ])
-
 
 PLATFORM_KEYS = {
     'unix': unix_keys,
