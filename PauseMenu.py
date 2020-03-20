@@ -27,7 +27,6 @@ class PauseMenu:
 			if (self.cur_item == 0):
 				self.next = self.parent
 			elif (self.cur_item == 1):
-				print('Thanks for the game!')
 				exit(0)
 		elif key == keys.UP:
 			if self.cur_item != 0:
