@@ -3,7 +3,7 @@ from getkey import getkey, keys
 from utils import char_range
 from PauseMenu import PauseMenu
 
-
+from sys import stdout
 
 class Battleship:
 
@@ -26,21 +26,21 @@ class Battleship:
 		self.SHIPS = [[Ship(5-i)] * i for i in range(1, 5)]
 
 	def draw(self):
-		print('  ', end='', flush=False)
+		stdout.write('  ')
 		for c in char_range('А', chr(ord('А') + self.N - 1)):
-			print('', c, end=' ', flush=False)
-		print('', flush=False)
+			stdout.write(f' {c} ')
+		stdout.write('\n')
 		for i in range(0, self.N):
-			print(i, end=' ', flush=False)
+			stdout.write(str(i) + ' ')
 			for j in range(0, self.N):
 				if i == self.pointer.i and j == self.pointer.j:
-					print('[', self.field[i][j].getSymbol(), ']',
-						sep='', end='', flush=False)
+					stdout.write(f'[{self.field[i][j].getSymbol()}]')
 				else:
-					print('', self.field[i][j].getSymbol(), end=' ', flush=False)
-			print('')
-		print('Current position:', self.pointer, flush=False)
-		print('Log:', self.log, flush=True)
+					stdout.write(f' {self.field[i][j].getSymbol()} ')
+			stdout.write('\n')
+		stdout.write(f'Current position: {str(self.pointer)}\n')
+		stdout.write(f'Log: {self.log}')
+		stdout.flush()
 
 	def handle(self, key):
 		if key == keys.ESC:
