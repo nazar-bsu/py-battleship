@@ -1,8 +1,6 @@
 import chalk
-TILE_SHIP_DAMAGED = chalk.yellow('*')
-TILE_SHIP_DESTROYED = chalk.red('#')
-TILE_SEA = chalk.blue('~')
-TILE_FOG_OF_WAR = '▢'
+from utils import TILES
+
 
 class Point:
     '''
@@ -15,6 +13,9 @@ class Point:
 
     def __str__(self):
         return '({0};{1})'.format(self.i, chr(ord('А') + self.j))
+
+    def isHere(self, i, j):
+        return i == self.i and j == self.j
 
 
 class Ship:
@@ -32,21 +33,21 @@ class Ship:
             self.damage += 1
 
 
-class FieldPoint(Point):
+class BattlefieldPoint(Point):
     def __init__(self, i, j, ship):
-        super(FieldPoint, self).__init__(i, j)
+        super(Point, self).__init__(i, j)
         self.touched = False
         self.ship = ship
 
     def getSymbol(self):
         if not self.touched:
-            return TILE_FOG_OF_WAR
+            return TILES'[TILE_FOG_OF_WAR]'
         elif self.ship is None:
-            return TILE_SEA
+            return TILES['TILE_SEA']
         elif self.ship.is_destroyed:
-            return TILE_SHIP_DESTROYED
+            return TILES['TILE_SHIP_DESTROYED']
         else:
-            return TILE_SHIP_DAMAGED
+            return TILES['TILE_SHIP_DAMAGED']
 
     def touch(self):
         if not self.touched:
@@ -55,6 +56,6 @@ class FieldPoint(Point):
                 self.ship.damage += 1
 
 
-point = FieldPoint(0, 0, 'ship')
+point = BattlefieldPoint(0, 0, 'ship')
 print(point.i)
 print(point.j)

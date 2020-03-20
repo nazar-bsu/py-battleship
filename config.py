@@ -1,3 +1,3 @@
-from battleship import Battleship
-start_state = Battleship()
+from BattleshipState import BattleshipState
+start_state = BattleshipState()
 field_size = 10

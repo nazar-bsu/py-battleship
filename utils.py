@@ -1,6 +1,14 @@
 from platform import system  # For getting the operating system name
 from subprocess import call  # For executing a shell command
 
+import chalk
+TILES = dict(
+    TILE_SHIP_DAMAGED=chalk.yellow('*'),
+    TILE_SHIP_DESTROYED=chalk.red('#'),
+    TILE_SEA=chalk.blue('~'),
+    TILE_FOG_OF_WAR='▢'
+)
+
 
 def clear_screen():
     """Clears the terminal screen."""

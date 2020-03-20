@@ -1,4 +1,4 @@
-from field_point import Point, FieldPoint, Ship
+from field_point import Point, BattlefieldPoint, Ship
 from getkey import getkey, keys
 from utils import char_range
 from config import field_size
@@ -14,7 +14,7 @@ for i in range(0, 10):
         ship = None
         if i % 2 == 1 and j % 2 == 1:
             ship = Ship(1)
-        field[i][j] = FieldPoint(i, j, ship)
+        field[i][j] = BattlefieldPoint(i, j, ship)
 
 # SHIPS = [[Ship(5-i)] * i for i in range(1, 5)]
 

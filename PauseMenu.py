@@ -1,9 +1,13 @@
+from sys import stdout
 from getkey import keys
 import chalk
+
+
 class PauseMenu:
 	
 	basic_menu_elems = ['Continue', 'Exit']
 	
+
 	def __init__(self, parent, menu_list = basic_menu_elems):
 		self.parent = parent
 		self.menu_elems = menu_list
@@ -12,13 +16,13 @@ class PauseMenu:
 		self.next = None
 
 	def draw(self):
-		print('')
+		stdout.write('\n')
 		for (idx, menu_item) in enumerate(self.menu_elems):
 			if (idx == self.cur_item):
-				print(chalk.yellow('\t* ' + menu_item))
+				stdout.write(chalk.yellow(f'\t* {menu_item}\n'))
 			else:
-				print('\t', menu_item)
-		print('')
+				stdout.write(f'\t {menu_item}\n')
+		stdout.flush()
 
 	def handle(self,key):
 		if key == keys.ESC:
