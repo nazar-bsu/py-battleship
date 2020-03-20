@@ -4,11 +4,10 @@ import chalk
 
 
 class PauseMenu:
-	
-	basic_menu_elems = ['Continue', 'Exit']
-	
 
-	def __init__(self, parent, menu_list = basic_menu_elems):
+	basic_menu_elems = ['Continue', 'Exit']
+
+	def __init__(self, parent, menu_list=basic_menu_elems):
 		self.parent = parent
 		self.menu_elems = menu_list
 		self.cur_item = 0
@@ -24,15 +23,11 @@ class PauseMenu:
 				stdout.write(f'\t {menu_item}\n')
 		stdout.flush()
 
-	def handle(self,key):
+	def handle(self, key):
 		if key == keys.ESC:
 			self.next = self.parent
 		elif key == keys.ENTER:
-			if (self.cur_item == 0):
-				self.next = self.parent
-			elif (self.cur_item == 1):
-				print('Thanks for the game!')
-				exit(0)
+			self.menu_hanlder(self.cur_item)
 		elif key == keys.UP:
 			if self.cur_item != 0:
 				self.cur_item -= 1
@@ -43,3 +38,10 @@ class PauseMenu:
 				self.cur_item += 1
 			else:
 				need_redraw = False
+
+	def menu_handler(index):
+		if (index == 0):
+				self.next = self.parent
+			elif (index == 1):
+				print('Thanks for the game!')
+				exit(0)
