@@ -3,6 +3,13 @@ from getkey import getkey
 from utils import clear_screen
 
 
+from cursor import hide,show
+hide()
+def onExit():
+	print('Thanks for the game!')
+	show()
+import atexit
+atexit.register(onExit)
 def main():
 	cur_state = start_state
 	while True:
