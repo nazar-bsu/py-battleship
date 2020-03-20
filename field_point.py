@@ -1,8 +1,8 @@
-TILE_SHIP_DAMAGED = '*'
-TILE_SHIP_DESTROYED = '#'
-TILE_SEA = '~'
+import chalk
+TILE_SHIP_DAMAGED = chalk.yellow('*')
+TILE_SHIP_DESTROYED = chalk.red('#')
+TILE_SEA = chalk.blue('~')
 TILE_FOG_OF_WAR = '▢'
-
 
 class Point:
     '''
